@@ -13,4 +13,12 @@ public class GameController {
         Game g = Game.getBuilder().setDimension(size).setPlayers(players).setWinningStrategies(winningStrategies).build();
         return g;
     }
+
+    public void disPlayBoard(Game g){
+        g.getBoard().printBoard();
+    }
+
+    public void takeMove(Game g){
+        // TO DO
+    }
 }

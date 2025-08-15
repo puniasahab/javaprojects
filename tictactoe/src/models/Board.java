@@ -26,4 +26,9 @@ public class Board {
     public  Board(int size){
         this.size = size;
     }
+
+
+    public void printBoard(){
+        // TO DO
+    }
 }
