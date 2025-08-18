@@ -2,24 +2,23 @@ package strategy;
 
 import models.Board;
 import models.Cell;
-import models.Player;
 import models.Symbol;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class RowWinningStrategy implements WinningStrategy{
+public class ColumnWinningStrategy implements WinningStrategy{
 
-    Map<Integer,HashMap<Symbol,Integer>> counts = new HashMap<>();
+    Map<Integer, HashMap<Symbol,Integer>> counts = new HashMap<>();
     public boolean checkWinninr(Cell c, Board b) {
 
-        int row = c.getRow();
+        int col = c.getCol();
         Symbol s = c.getPlayer().getSymbol();
 
-        if(!counts.containsKey(row)){
-            counts.put(row,new HashMap<>());
+        if(!counts.containsKey(col)){
+            counts.put(col,new HashMap<>());
         }
-        HashMap<Symbol,Integer> hs =  counts.get(row);
+        HashMap<Symbol,Integer> hs =  counts.get(col);
         if(!hs.containsKey(s)){
             hs.put(s,0);
         }

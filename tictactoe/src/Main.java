@@ -1,16 +1,30 @@
 import controller.GameController;
 import exceptions.InvalidBotFoundException;
-import models.Game;
-import models.GameStatus;
+import models.*;
+import strategy.ColumnWinningStrategy;
+import strategy.RowWinningStrategy;
+import strategy.WinningStrategy;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) throws InvalidBotFoundException {
+
+        Scanner s = new Scanner(System.in);
+        int dimension = 3;
         GameController gc = new GameController();
-        Game g1 = gc.startGame(3,new ArrayList<>(),new ArrayList<>());
+        List<Player> p= new ArrayList<>() ;
+        p.add(new Player("Parveen",1, PlayerType.HUMAN,new Symbol('o')));
+        p.add(new Player("Pooja",2, PlayerType.HUMAN,new Symbol('x')));
+
+        List<WinningStrategy>  ws = List.of(
+                new RowWinningStrategy(), new ColumnWinningStrategy()
+        );
+        Game g1 = gc.startGame(dimension,new ArrayList<>(),ws);
 
         gc.disPlayBoard(g1);
 

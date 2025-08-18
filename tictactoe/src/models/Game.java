@@ -142,6 +142,10 @@ public class Game {
             }
         }
     }
+    public  void makeMove(){
+        Player currentPlayer = players.get(nextPlayerTurn);
+        //todo
+    }
 
 
 }

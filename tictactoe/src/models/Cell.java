@@ -25,7 +25,31 @@ public class Cell {
         this.cellStatus = cellStatus;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    private Player player;
+
     private int row;
     private int col;
     private CellStatus cellStatus;
+
+    public Cell(int row, int col){
+        this.row = row;
+        this.col = col;
+        this.player = null;
+        this.cellStatus = CellStatus.EMPTY;
+    }
+    public void display(){
+        if(player == null){
+            System.out.println("| - |");
+        }else {
+            System.out.println("| " + this.player.getSymbol() + " |");
+        }
+    }
 }

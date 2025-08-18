@@ -41,4 +41,12 @@ public class Player {
         this.ID = ID;
     }
 
+
+    public Player(String name,int id , PlayerType playerType , Symbol s){
+        this.name = name ;
+        this.playerType = playerType;
+        this.ID = id;
+        this.symbol = s;
+    }
+
 }
