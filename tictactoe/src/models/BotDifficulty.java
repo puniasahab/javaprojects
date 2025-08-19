@@ -2,5 +2,6 @@ package models;
 
 public enum BotDifficulty {
     EASY,
-    HARD
+    HARD,
+    MEDIUM
 }

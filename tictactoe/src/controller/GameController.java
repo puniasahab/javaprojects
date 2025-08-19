@@ -3,7 +3,7 @@ package controller;
 import exceptions.InvalidBotFoundException;
 import models.Game;
 import models.Player;
-import strategy.WinningStrategy;
+import strategy.winningStrategy.WinningStrategy;
 
 import java.util.List;
 
@@ -20,5 +20,6 @@ public class GameController {
 
     public void takeMove(Game g){
         // TO DO
+        g.makeMove();
     }
 }

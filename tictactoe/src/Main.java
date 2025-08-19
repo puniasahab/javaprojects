@@ -1,9 +1,9 @@
 import controller.GameController;
 import exceptions.InvalidBotFoundException;
 import models.*;
-import strategy.ColumnWinningStrategy;
-import strategy.RowWinningStrategy;
-import strategy.WinningStrategy;
+import strategy.winningStrategy.ColumnWinningStrategy;
+import strategy.winningStrategy.RowWinningStrategy;
+import strategy.winningStrategy.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +19,13 @@ public class Main {
         GameController gc = new GameController();
         List<Player> p= new ArrayList<>() ;
         p.add(new Player("Parveen",1, PlayerType.HUMAN,new Symbol('o')));
-        p.add(new Player("Pooja",2, PlayerType.HUMAN,new Symbol('x')));
+        //p.add(new Player("Pooja",2, PlayerType.HUMAN,new Symbol('x')));
+        p.add(new Bot("Bot1",2,new Symbol('x'),BotDifficulty.EASY));
 
         List<WinningStrategy>  ws = List.of(
                 new RowWinningStrategy(), new ColumnWinningStrategy()
         );
-        Game g1 = gc.startGame(dimension,new ArrayList<>(),ws);
+        Game g1 = gc.startGame(dimension,p,ws);
 
         gc.disPlayBoard(g1);
 

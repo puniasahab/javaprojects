@@ -41,6 +41,7 @@ public class Board {
             for (Cell c:rows ) {
                 c.display();
             }
+            System.out.println("");
         }
     }
 }

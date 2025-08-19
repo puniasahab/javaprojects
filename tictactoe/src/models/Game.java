@@ -1,11 +1,10 @@
 package models;
 
 import exceptions.InvalidBotFoundException;
-import strategy.WinningStrategy;
+import strategy.winningStrategy.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Game {
     private Board board;
@@ -144,7 +143,31 @@ public class Game {
     }
     public  void makeMove(){
         Player currentPlayer = players.get(nextPlayerTurn);
-        //todo
+        Cell c = currentPlayer.decideCell(this.board);
+        if(c ==null){
+            System.out.println("Invalid input");
+            return;
+        }
+        c.setPlayer(currentPlayer);
+        c.setCellStatus(CellStatus.FILLED);
+        moves.add(c);
+        // now check winner
+        if(checkWinner(board,c)){
+            gameStatus = GameStatus.SUCCESS;
+            winner = currentPlayer;
+        }else if (moves.size() == board.getSize() * board.getSize()){
+            gameStatus = GameStatus.DRAW;
+        }
+        this.nextPlayerTurn = (nextPlayerTurn + 1 ) % players.size() ;
+    }
+
+    public boolean checkWinner(Board b , Cell c){
+        for(WinningStrategy ws : winningStrategies){
+            if(ws.checkWinninr(c,b)){
+                return true;
+            }
+        }
+        return false;
     }
 
 
