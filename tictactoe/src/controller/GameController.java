@@ -22,4 +22,8 @@ public class GameController {
         // TO DO
         g.makeMove();
     }
+
+    public void undo(Game g){
+        g.undo();
+    }
 }

@@ -6,4 +6,6 @@ import models.Player;
 
 public interface WinningStrategy {
     public boolean checkWinninr(Cell c, Board b);
+
+    public void handleundo(Cell c, Board b);
 }

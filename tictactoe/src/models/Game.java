@@ -141,11 +141,16 @@ public class Game {
             }
         }
     }
+
     public  void makeMove(){
         Player currentPlayer = players.get(nextPlayerTurn);
         Cell c = currentPlayer.decideCell(this.board);
         if(c ==null){
             System.out.println("Invalid input");
+            return;
+        }
+        if(c.getCellStatus() == CellStatus.FILLED){
+            System.out.println("This Cell is already filled");
             return;
         }
         c.setPlayer(currentPlayer);
@@ -168,6 +173,28 @@ public class Game {
             }
         }
         return false;
+    }
+
+    public void  undo(){
+        // implement
+        if(moves.isEmpty()){
+            System.out.println("nothing to undo");
+            return;
+        }
+        Cell c = moves.get(moves.size() -1);
+        moves.remove(moves.size()-1);
+
+        for (WinningStrategy ws: winningStrategies) {
+            ws.handleundo(c,board);
+        }
+        c.setCellStatus(CellStatus.EMPTY);
+        Player lastPlayer = c.getPlayer();
+        c.setPlayer(null);
+        nextPlayerTurn -=   1 ;
+        nextPlayerTurn = (nextPlayerTurn + players.size())%players.size();
+
+
+
     }
 
 

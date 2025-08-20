@@ -27,4 +27,12 @@ public class ColumnWinningStrategy implements WinningStrategy{
 
         return hs.get(s) == b.getSize();
     }
+
+    public void handleundo(Cell c, Board b) {
+        int col = c.getCol();
+        Symbol s = c.getPlayer().getSymbol();
+
+        Map<Symbol,Integer> colMap = counts.get(col);
+        colMap.put(s,colMap.get(s)-1);
+    }
 }
